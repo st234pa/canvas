@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <button id="button">Clear</button>
+    <canvas height="500" width="500" id="slate"></canvas>
+    <script>
+      var c = document.getElementById("slate");
+      var ctx = c.getContext("2d");
+      //ctx.fillRect(100, 50, 100, 100); //xcor, ycor,(where 0,0 is top left corner), width, height
+      var b = document.getElementById("button");
+
+      var draw = function(e) {
+          var mouseX = e.offsetX;
+          var mouseY = e.offsetY;
+          ctx.fillStyle = "red";
+          ctx.fillRect(mouseX-10,mouseY-10,20,20);
+      };
+
+      var clear = function() {
+          ctx.clearRect(0,0,c.width,c.height);
+      };
+      b.addEventListener("click", clear);
+      c.addEventListener("click", draw);
+
+    </script>
+  </body>
+</html>
