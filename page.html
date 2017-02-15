@@ -10,6 +10,7 @@
       var ctx = c.getContext("2d");
       //ctx.fillRect(100, 50, 100, 100); //xcor, ycor,(where 0,0 is top left corner), width, height
       var b = document.getElementById("button");
+      
 
       var draw = function(e) {
           var mouseX = e.offsetX;
@@ -18,11 +19,28 @@
           ctx.fillRect(mouseX-10,mouseY-10,20,20);
       };
 
+      var draw2 = function(e) {
+          var mouseX = e.offsetX;
+          var mouseY = e.offsetY;
+          ctx.lineTo(mouseX, mouseY);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.fillStyle = "red";
+          //ctx.fillRect(mouseX-10,mouseY-10,20,20);
+          
+          ctx.arc(mouseX-10, mouseY-10, 20, 0, 2*Math.PI);
+          ctx.fill();
+          ctx.stroke();
+          //ctx.beginPath();
+      };
+
       var clear = function() {
           ctx.clearRect(0,0,c.width,c.height);
+          ctx.beginPath();
       };
       b.addEventListener("click", clear);
-      c.addEventListener("click", draw);
+      c.addEventListener("click", draw2);
+      ctx.beginPath();
 
     </script>
   </body>
