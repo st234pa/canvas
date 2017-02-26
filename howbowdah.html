@@ -3,92 +3,11 @@
   <head>
   </head>
   <body>
-    <button id="button">Stop It</button>
-    <button id="button2">Clear</button>
+    <button id="circle">Circle</button>
+    <button id="dvd">DVD</button>
+    <button id="stopper">Stop</button>
+    <button id="clearer">Clear</button>
     <canvas height="500" width="500" id="slate"></canvas>
-    <script>
-      var c = document.getElementById("slate");
-      var ctx = c.getContext("2d");
-      //ctx.fillRect(100, 50, 100, 100); //xcor, ycor,(where 0,0 is top left corner), width, height
-      var b = document.getElementById("button");
-      var b2 = document.getElementById("button2");
-      var requestID;
-      var myImg = new Image();
-      myImg.src = "dvd.jpg";
-      
-      var clear = function(e) {
-          e.preventDefault();
-          ctx.clearRect(0,0,c.width,c.height);
-          ctx.beginPath();
-      };
-
-      var animate = function(e) {
-         window.cancelAnimationFrame(requestID);
-          var radius = 1;
-          var xcor = c.width/2;
-          var ycor = c.height/2;
-          var grow = true;
-          var drawDot = function() {
-              console.log(requestID);
-              ctx.clearRect(0, 0, c.width, c.height);
-              ctx.beginPath();
-              ctx.arc(xcor, ycor, radius, 0, 2*Math.PI);
-              ctx.stroke();
-              ctx.fill();
-              if (radius >= xcor) {
-                  grow = false;
-              };
-              if (radius <= 1) {
-                  grow = true;
-              }
-              if (grow) {
-                  radius++;
-              }
-              else {
-                  radius--;
-              }
-              requestID = window.requestAnimationFrame(drawDot);
-          };
-          drawDot();
-      };
-
-
-      var animate2 = function(e) {
-         window.cancelAnimationFrame(requestID);
-          var xcor = 10;
-          var ycor = 10;
-          var vx = 1;
-          var vy = 1;
-          var grow = true;
-          var drawDot = function() {
-              console.log(requestID);
-              ctx.clearRect(0, 0, c.width, c.height);
-              ctx.beginPath();
-              ctx.drawImage(myImg, xcor, ycor);
-              ctx.stroke(); 
-              if (xcor > c.width || xcor < 0) {
-                  vx = 0 - vx;
-              };
-              if (ycor > c.width || ycor < 0) {
-                  vy = 0 - vy;
-              }
-              xcor += vx;
-              ycor += vy;
-              requestID = window.requestAnimationFrame(drawDot);
-          };
-          drawDot();
-      };
-
-
-      var stopIt = function() {
-          console.log(requestID);
-          window.cancelAnimationFrame(requestID);
-      };
-      b.addEventListener("click", stopIt);
-      b2.addEventListener("click", clear);
-      c.addEventListener("click", animate2);
-      ctx.beginPath();
-
-    </script>
+    <script src="howbowdah.js"></script>
   </body>
 </html>
